@@ -134,7 +134,8 @@ class App extends Component {
             })
     .then(response => response.json())
       .then(response => {
-        if (response) {
+        if (response !== 'Api not available') {
+          console.log(response);
           fetch('https://frozen-wave-79143.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
