@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Signin/Signin.css';
 
 class Register extends Component {
 	constructor(props) {
@@ -7,6 +8,7 @@ class Register extends Component {
 			email: '',
 			password: '',
 			name: '',
+			toggle: false
 		}
 	};
 
@@ -35,6 +37,8 @@ class Register extends Component {
 			if (data.id){
 				this.props.loadUser(data);
 				this.props.onRouteChange('home');
+			} else {
+				this.setState({ toggle: true});
 			}
 		})
 	};
@@ -59,6 +63,7 @@ class Register extends Component {
 				        <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" onChange={this.onPasswordChange}/>
 				      </div>
 				    </fieldset>
+				    {this.state.toggle ? <div className='failed'>Info Invalid</div> : null }
 				    <div className="">
 				      <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Register" onClick={this.onRegister} />
 				    </div>

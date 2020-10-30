@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import './Signin.css';
 
 class Signin extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			signInEmail: '',
-			signInPassword: ''
+			signInPassword: '',
+			toggle: false
 		}
 	}
 	onEmailChange = (event) => {
@@ -28,6 +30,8 @@ class Signin extends Component {
 			if (data.id)	{
 				this.props.loadUser(data);
 				this.props.onRouteChange('home');
+			} else {
+				this.setState({ toggle: true});
 			}
 		})
 	};
@@ -59,6 +63,7 @@ class Signin extends Component {
 				        id="password" />
 				      </div>
 				    </fieldset>
+				    {this.state.toggle ? <div className='failed'>Info Invalid</div> : null }
 				    <div className="">
 				      <input 
 				      className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 

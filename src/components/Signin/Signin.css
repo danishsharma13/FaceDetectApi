@@ -1,0 +1,7 @@
+.failed {
+	font-family: Roboto Mono;
+	text-decoration: underline;
+	color: red;
+	margin: 10px;
+	margin-bottom: 15px;
+}

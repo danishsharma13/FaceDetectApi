@@ -65,7 +65,8 @@ const initialState = {
     name: '',
     email: '',
     entries: 0,
-    joined: ''
+    joined: '',
+    toggle: false
     }
 };
 
@@ -83,7 +84,8 @@ class App extends Component {
         name: '',
         email: '',
         entries: 0,
-        joined: ''
+        joined: '',
+        toggle: false
       }
     }
   };
@@ -135,7 +137,7 @@ class App extends Component {
     .then(response => response.json())
       .then(response => {
         if (response !== 'Api not available') {
-          console.log(response);
+          this.setState({ toggle: false });
           fetch('https://frozen-wave-79143.herokuapp.com/image', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
@@ -148,6 +150,8 @@ class App extends Component {
             this.setState(Object.assign(this.state.user, {entries: count}))
             })
           .catch(console.log)
+          } else {
+            this.setState({ toggle: true });
           }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
@@ -175,6 +179,7 @@ class App extends Component {
               <Logo />
               <Rank name={this.state.user.name} entries={this.state.user.entries} />
               <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={ this.onButtonSubmit }/>
+              {this.state.toggle ? <div className='failed'>You need to insert PNG url link</div> : null }
               <FaceRecognition box={box} imageUrl={imageUrl} />
             </div>
           : (route === 'signin'
