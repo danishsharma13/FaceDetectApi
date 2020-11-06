@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from "./components/Navigation/Navigation";
 import Logo from "./components/Logo/Logo";
+import Instruction from './components/Instruction/Instruction';
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Signin from "./components/Signin/Signin";
@@ -177,6 +178,7 @@ class App extends Component {
         {route === 'home' 
           ? <div>
               <Logo />
+              <Instruction />
               <Rank name={this.state.user.name} entries={this.state.user.entries} />
               <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={ this.onButtonSubmit }/>
               {this.state.toggle ? <div className='failed'>You need to insert PNG url link</div> : null }
